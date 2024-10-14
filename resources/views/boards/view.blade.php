@@ -44,5 +44,4 @@
           @endif
         @endauth
     </div>
-    <div>{{ $boards }}</div>
 @endsection    

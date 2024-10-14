@@ -36,7 +36,7 @@ class BoardController extends Controller
 
       //$content = Board::where('bid', $bid)->first();
       //$content = DB::table('board')->where('bid', $id)->first();
-      //print_r($boards);
+      //dump($boards);
       return view('boards.view', ['boards' => $boards]);
     }
 
@@ -80,13 +80,13 @@ class BoardController extends Controller
      * 삭제하기
      */
     public function delete(Request $request, int $bid) {
-      print_r($request->input());
-      echo $bid;
 
+      $page = $request->input('page');
+
+      // 데이타 삭제
       Board::where('bid', $bid)->delete();
 
-      //$boards = Board::orderBy('bid','desc')->paginate(config('board.rows_per_page'));
-      //return view('boards.index', compact('boards'));
+      return redirect('/boards?page='. $page);
     }
 }
 

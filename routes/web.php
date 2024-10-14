@@ -12,7 +12,7 @@ echo session()->get('locale');
 Route::get('/', function () {
     //App::setLocale(session()->get('locale'));
     return view('welcome');
-});
+})->name('home');
 
 Route::get('/lang', function (Request $request) {
   $locale = $request->input('lang');
