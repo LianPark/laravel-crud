@@ -14,7 +14,7 @@ class BoardController extends Controller
       //$boards = Board::orderBy('bid','desc')->paginate(10);
       //$boards = Board::all();
       //$boards = DB::table('board')->orderBy('bid','desc')->paginate(10);
-      App::setLocale(session()->get('locale'));
+      //App::setLocale(session()->get('locale'));
       $boards = Board::orderBy('bid','desc')->paginate(config('board.rows_per_page'));
 
       //print_r($boards);
@@ -74,6 +74,19 @@ class BoardController extends Controller
         } else {
           echo "No Auth";
         }
+    }
+
+    /**
+     * 삭제하기
+     */
+    public function delete(Request $request, int $bid) {
+      print_r($request->input());
+      echo $bid;
+
+      Board::where('bid', $bid)->delete();
+
+      //$boards = Board::orderBy('bid','desc')->paginate(config('board.rows_per_page'));
+      //return view('boards.index', compact('boards'));
     }
 }
 

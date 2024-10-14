@@ -32,11 +32,17 @@
             </tr>
             <tr>
                 <th width="100">내용</th>               
-                <td>{!! nl2br($boards->content) !!}</td>
+                <td height=150>{!! nl2br($boards->content) !!}</td>
             </tr>
         </tbody>
     </table>
     <div align="right">
         <a href="/boards/?page={{ $boards->pagenumber }}" class="btn btn-primary">목록</a>
+        @auth()
+          @if ($boards->userid == auth()->user()->userid)
+          <a href="/boards/delete/{{$boards->bid}}/?page={{ $boards->pagenumber }}" class="btn btn-primary">삭제</a>
+          @endif
+        @endauth
     </div>
-    @endsection    
+    <div>{{ $boards }}</div>
+@endsection    

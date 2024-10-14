@@ -16,8 +16,11 @@ class Localization
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (session()->has('locale')) {
-            App::setLocale(session()->get('locale'));
+        $locale_cookie = $request->cookie('locale');
+        if (isset($locale_cookie)) {
+            App::setLocale($locale_cookie);
+        } else {
+            App::setLocale(config('app.locale'));
         }
 
         return $next($request);

@@ -14,7 +14,9 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         //$middleware->append(Authenticate::class);
-        $middleware->append([Localization::class,]);
+        //$middleware->append([Localization::class,]);
+        // Use appendToGroup() to add the middleware to the 'web' group.
+        $middleware->appendToGroup('web', [Localization::class]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

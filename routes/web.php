@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\App;
 echo session()->get('locale');
 
 Route::get('/', function () {
-    App::setLocale(session()->get('locale'));
+    //App::setLocale(session()->get('locale'));
     return view('welcome');
 });
 
@@ -18,7 +18,9 @@ Route::get('/lang', function (Request $request) {
   $locale = $request->input('lang');
   app()->setLocale($locale);
   session()->put('locale', $locale);
-  return redirect()->back();
+
+  $locale_cookie = cookie('locale', $locale, 565000);
+  return redirect()->back()->cookie($locale_cookie);
 })->name('lang.change');
 
 //게시판
@@ -30,6 +32,7 @@ Route::get('/boards/view/{id}/{page}', [BoardController::class, 'view'])->name('
 // laravel 11.x 미들웨어 방법
 Route::middleware([Authenticate::class])->group(function(){
     Route::get('/boards/write', [BoardController::class, 'write'])->name('boards.write');
+    Route::get('/boards/delete/{bid}/', [BoardController::class, 'delete'])->name('boards.delete');
     Route::post('/boards/create', [BoardController::class, 'create'])->name('boards.create');
 });
 
