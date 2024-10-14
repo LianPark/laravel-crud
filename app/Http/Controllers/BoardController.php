@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\App;
 
 class BoardController extends Controller
 {
@@ -13,25 +14,29 @@ class BoardController extends Controller
       //$boards = Board::orderBy('bid','desc')->paginate(10);
       //$boards = Board::all();
       //$boards = DB::table('board')->orderBy('bid','desc')->paginate(10);
+      App::setLocale(session()->get('locale'));
       $boards = Board::orderBy('bid','desc')->paginate(config('board.rows_per_page'));
 
       //print_r($boards);
       return view('boards.index', compact('boards'));
     }
 
+    /**
+     * 글보기
+     */
     public function view(int $bid, int $page) {
 
       //echo "<script>alert('view: ' + " . $bid . ")</script>";
       // row을 찾아서 cnt 값을 1 증가시킨다.
-      //Board::find($bid)->increment('cnt');
-      DB::table("board")->where('bid', $bid)->increment('cnt');
+      Board::find($bid)->increment('cnt');
+      //DB::table("board")->where('bid', $bid)->increment('cnt');
       $boards = Board::findOrFail($bid);
       $boards->content = htmlspecialchars_decode($boards->content);
       $boards->pagenumber = $page;
 
       //$content = Board::where('bid', $bid)->first();
       //$content = DB::table('board')->where('bid', $id)->first();
-      print_r($boards);
+      //print_r($boards);
       return view('boards.view', ['boards' => $boards]);
     }
 

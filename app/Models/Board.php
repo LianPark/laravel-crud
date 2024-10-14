@@ -63,7 +63,7 @@ class Board extends Model
      * @var array
      */
     protected $casts = [
-        'bid' => 'int', 'idx' => 'int', 'userid' => 'string', 'subject' => 'string', 'content' => 'string', 'regdate' => 'datetime', 'modifydate' => 'datetime', 'status' => 'boolean', 'parent_id' => 'int', 'multi' => 'string', 'name' => 'string', 'pw' => 'string', 'title' => 'string', 'content' => 'string', 'date' => 'date', 'hit' => 'int', 'lock_post' => 'int'
+        'bid' => 'int', 'idx' => 'int', 'userid' => 'string', 'subject' => 'string', 'content' => 'string', 'regdate' => 'datetime', 'modifydate' => 'datetime', 'status' => 'boolean', 'parent_id' => 'int', 'multi' => 'string', 'name' => 'string', 'pw' => 'string', 'title' => 'string', 'content' => 'string', 'date' => 'date', 'hit' => 'int', 'lock_post' => 'int', 'cnt' => 'int'
     ];
 
     /**

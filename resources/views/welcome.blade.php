@@ -54,6 +54,8 @@
                         @endif
                     </header>
 
+                    <div style="z-index: 99999;">@include('components.language-switch')</div>
+
                     <main class="mt-6">
                         <div class="grid gap-6 lg:grid-cols-2 lg:gap-8">
                             <a
@@ -114,7 +116,7 @@
                                     <h2 class="text-xl font-semibold text-black dark:text-white">Laracasts</h2>
 
                                     <p class="mt-4 text-sm/relaxed">
-                                        Laracasts offers thousands of video tutorials on Laravel, PHP, and JavaScript development. Check them out, see for yourself, and massively level up your development skills in the process.
+                                    {{ __('messages.Laracasts')}}
                                     </p>
                                 </div>
 

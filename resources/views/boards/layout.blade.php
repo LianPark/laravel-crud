@@ -16,6 +16,7 @@
     <header>
         @yield('header')
     </header>
+    @include('components.language-switch')
     @yield('content')
 </div>
 

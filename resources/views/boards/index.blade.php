@@ -15,7 +15,7 @@
     </div>
     @endif
     <div style="text-align:right;">
-        <a href="/boards/write"><button class="text-xl">등록</button></a>
+        <a href="/boards/write"><button class="text-xl">{{__('messages.posting')}}</button></a>
     </div>
     <table class="table table-striped table-hover">
         <colgroup>
@@ -27,11 +27,11 @@
         </colgroup>
         <thead>
         <tr>
-            <th scope="col">번호</th>
-            <th scope="col">이름</th>
-            <th scope="col">제목</th>
-            <th scope="col">조회수</th>
-            <th scope="col">등록일</th>
+            <th scope="col">{{ ucfirst(__('messages.num')) }}</th>
+            <th scope="col">{{ ucfirst(__('messages.name')) }}</th>
+            <th scope="col">{{ ucfirst(__('messages.subject')) }}</th>
+            <th scope="col">{{ ucfirst(__('messages.hit')) }}</th>
+            <th scope="col">{{ ucfirst(__('messages.date')) }}</th>
         </tr>
         </thead>
         <tbody>

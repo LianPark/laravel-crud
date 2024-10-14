@@ -4,10 +4,22 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BoardController;
 use App\Http\Controllers\MemberController;
 use App\Http\Middleware\Authenticate;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+
+echo session()->get('locale');
 
 Route::get('/', function () {
+    App::setLocale(session()->get('locale'));
     return view('welcome');
 });
+
+Route::get('/lang', function (Request $request) {
+  $locale = $request->input('lang');
+  app()->setLocale($locale);
+  session()->put('locale', $locale);
+  return redirect()->back();
+})->name('lang.change');
 
 //게시판
 Route::get('/boards', [BoardController::class, 'index'])->name('boards.index');
