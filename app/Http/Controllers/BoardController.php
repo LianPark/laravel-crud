@@ -13,7 +13,7 @@ class BoardController extends Controller
       //$boards = Board::orderBy('bid','desc')->paginate(10);
       //$boards = Board::all();
       //$boards = DB::table('board')->orderBy('bid','desc')->paginate(10);
-      $boards = Board::orderBy('bid','desc')->paginate(5);
+      $boards = Board::orderBy('bid','desc')->paginate(config('board.rows_per_page'));
 
       //print_r($boards);
       return view('boards.index', compact('boards'));
@@ -35,7 +35,9 @@ class BoardController extends Controller
       return view('boards.view', ['boards' => $boards]);
     }
 
-    // write 폼 작성
+    /**
+     * write 폼 작성
+     */
     public function write() {
       echo auth()->user();
       if(auth()->check()){

@@ -36,8 +36,8 @@
         </thead>
         <tbody>
             <?php
-                $pagenumber = $_GET["page"]??1;
-                $idx = $boards->total()-(($boards->currentPage()-1) * 5);
+                $pagenumber = $_GET["page"] ?? 1;
+                $idx = $boards->total()-(($boards->currentPage()-1) * config('board.rows_per_page') );
             ?>
             @foreach ($boards as $board)
                 <tr>

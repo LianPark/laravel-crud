@@ -15,19 +15,11 @@ Route::get('/boards/view/{id}/{page}', [BoardController::class, 'view'])->name('
 //Route::get('/boards/write', [BoardController::class, 'write'])->name('auth.write')->middleware(Authenticate::class);
 //Route::post('/boards/create', [BoardController::class, 'create'])->name('boards.create');
 
-// old laravel 미들웨어 방법
-// Route::middleware('auth') -> group(function (){
-//     Route::get('/boards/write', [BoardController::class, 'write'])->name('boards.write');
-//     Route::post('/boards/create', [BoardController::class, 'create'])->name('boards.create');
-// });
-
 // laravel 11.x 미들웨어 방법
 Route::middleware([Authenticate::class])->group(function(){
     Route::get('/boards/write', [BoardController::class, 'write'])->name('boards.write');
     Route::post('/boards/create', [BoardController::class, 'create'])->name('boards.create');
 });
-
-
 
 //회원
 Route::get('/login', [MemberController::class, 'login'])->name('auth.login');
